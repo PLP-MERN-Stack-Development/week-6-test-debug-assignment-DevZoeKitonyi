@@ -3,7 +3,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import Button from '../../components/Button';
+import Button from '../../components/common/Button';
 
 describe('Button Component', () => {
   // Test rendering
@@ -92,4 +92,13 @@ describe('Button Component', () => {
     // Should also have the default classes
     expect(button).toHaveClass('btn-primary');
   });
-}); 
+
+  // Test rendering as a link
+  it('renders as a link when "to" prop is provided', () => {
+    render(<Button to="/some-path">Go to Path</Button>);
+    const link = screen.getByRole('link', { name: /go to path/i });
+    
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/some-path');
+  });
+});

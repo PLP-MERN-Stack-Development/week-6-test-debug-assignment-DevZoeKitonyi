@@ -1,0 +1,30 @@
+{
+  "name": "mern-stack-app",
+  "version": "1.0.0",
+  "description": "MERN stack application with comprehensive testing.",
+  "main": "server/server.js",
+  "scripts": {
+    "install-all": "npm install && npm install --prefix client && npm install --prefix server",
+    "server": "npm run watch --prefix server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "npm test --prefix server && npm test --prefix client",
+    "test:unit": "npm run test:unit --prefix server -- --coverage && npm run test:unit --prefix client -- --coverage",
+    "test:integration": "npm run test:integration --prefix server",
+    "test:e2e": "concurrently \"npm run server\" \"npm run cypress:run --prefix client\"",
+    "setup-test-db": "npm run setup-test-db --prefix server"
+  },
+  "keywords": [
+    "mern",
+    "react",
+    "node",
+    "express",
+    "mongodb",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  }
+}
